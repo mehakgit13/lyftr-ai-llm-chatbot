@@ -1,0 +1,842 @@
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
+
+/* =====================================
+   1. GLOBAL STYLES
+   ===================================== */
+
+:root {
+  font-family: 'DM Sans', sans-serif;
+  color: #e5e7eb;
+  background: #0b1020;
+  font-synthesis: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+}
+
+/* =====================================
+   2. MAIN APPLICATION LAYOUT
+   ===================================== */
+
+.app-shell {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 255px 1fr;
+  background:
+    radial-gradient(
+      circle at 70% 0%,
+      #17213a 0,
+      transparent 35%
+    ),
+    #0b1020;
+}
+
+/* =====================================
+   3. SIDEBAR
+   ===================================== */
+
+.sidebar {
+  border-right: 1px solid #202a40;
+  padding: 27px 18px;
+  display: flex;
+  flex-direction: column;
+  background: #0b1222;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  margin: 2px 5px 40px;
+}
+
+.brand-icon {
+  width: 39px;
+  height: 39px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  color: #101827;
+  background: linear-gradient(135deg, #b7f3dc, #75d7c3);
+}
+
+.brand b {
+  font: 800 20px Manrope, sans-serif;
+}
+
+.brand b span {
+  color: #83dfc8;
+}
+
+.brand small {
+  display: block;
+  font-size: 9px;
+  letter-spacing: 1.4px;
+  color: #71809b;
+  margin-top: 2px;
+}
+
+.new-chat,
+.prompt-toggle {
+  border: 1px solid #2b3852;
+  background: #141e32;
+  color: #dce6f7;
+  border-radius: 10px;
+  padding: 11px 13px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font: 600 12px 'DM Sans', sans-serif;
+  cursor: pointer;
+}
+
+.new-chat:hover,
+.prompt-toggle:hover {
+  border-color: #72cbb7;
+}
+
+.side-note {
+  margin-top: 28px;
+  border: 1px solid #202c42;
+  background: #101a2c;
+  border-radius: 12px;
+  padding: 13px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.side-note b {
+  font-size: 12px;
+  text-transform: capitalize;
+}
+
+.side-note small {
+  display: block;
+  font-size: 10px;
+  color: #73829d;
+  margin-top: 4px;
+  max-width: 170px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #eab568;
+}
+
+.dot.online {
+  background: #66d7ad;
+  box-shadow: 0 0 10px #66d7ad66;
+}
+
+.dot.offline {
+  background: #ed7777;
+}
+
+.sidebar-bottom {
+  margin-top: auto;
+  display: grid;
+  gap: 6px;
+  padding: 10px 5px;
+  color: #73819b;
+  font-size: 10px;
+}
+
+.sidebar-bottom b {
+  font-size: 11px;
+  color: #aab6cb;
+  font-weight: 500;
+}
+
+/* =====================================
+   4. MAIN CONTENT AND HEADER
+   ===================================== */
+
+.main {
+  min-width: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  max-width: 1200px;
+  width: 100%;
+  margin: auto;
+}
+
+.topbar {
+  min-height: 92px;
+  border-bottom: 1px solid #202a40;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 5.5%;
+}
+
+.eyebrow {
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: #78d8bf;
+  font-weight: 700;
+}
+
+.topbar h1 {
+  font: 700 19px Manrope, sans-serif;
+  margin: 4px 0 0;
+}
+
+.prompt-toggle {
+  font-size: 11px;
+}
+
+/* =====================================
+   5. CHAT AREA
+   ===================================== */
+
+.chat-area {
+  flex: 1;
+  min-height: 400px;
+  overflow: auto;
+  padding: 30px 5.5%;
+}
+
+.welcome {
+  min-height: 430px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.welcome-icon {
+  width: 62px;
+  height: 62px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #31584f;
+  background: #142c31;
+  color: #82e0c7;
+  border-radius: 20px;
+  margin-bottom: 23px;
+}
+
+.welcome h2 {
+  font: 800 clamp(25px, 3vw, 36px) Manrope, sans-serif;
+  line-height: 1.2;
+  margin: 12px 0;
+  color: #f3f6fb;
+}
+
+.welcome p {
+  max-width: 440px;
+  color: #8795ad;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.suggestions {
+  display: flex;
+  gap: 9px;
+  margin-top: 17px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.suggestions button {
+  border: 1px solid #2a3852;
+  background: #111c30;
+  color: #bdc9dc;
+  padding: 9px 12px;
+  border-radius: 9px;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.suggestions button:hover {
+  border-color: #77d8bd;
+}
+
+/* =====================================
+   6. MESSAGE LIST AND MESSAGE BUBBLES
+   ===================================== */
+
+.message-list {
+  max-width: 850px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.message-row {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.message-row.user {
+  flex-direction: row-reverse;
+}
+
+.avatar {
+  flex: 0 0 31px;
+  width: 31px;
+  height: 31px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  background: #17332f;
+  color: #8ce2ca;
+  border: 1px solid #2a5a4e;
+}
+
+.user .avatar {
+  background: #25314a;
+  border-color: #3a4a69;
+  color: #b9c8e2;
+}
+
+.message-content {
+  max-width: calc(100% - 45px);
+  min-width: 120px;
+}
+
+.message-label {
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  color: #8290a8;
+  font-weight: 700;
+  margin: 2px 0 7px;
+}
+
+.user .message-label {
+  text-align: right;
+}
+
+.bubble {
+  background: #121e32;
+  border: 1px solid #26354f;
+  border-radius: 3px 13px 13px 13px;
+  padding: 14px 16px;
+  color: #dce5f3;
+  font-size: 13px;
+  line-height: 1.7;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.user .bubble {
+  background: #1b2b43;
+  border-color: #304662;
+  border-radius: 13px 3px 13px 13px;
+}
+
+/* =====================================
+   7. METADATA CHIPS
+   ===================================== */
+
+.metadata {
+  border-top: 1px solid #2b3b52;
+  margin-top: 13px;
+  padding-top: 11px;
+  display: flex;
+  gap: 7px;
+  flex-wrap: wrap;
+}
+
+.meta-chip {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: #0c1628;
+  border: 1px solid #26354b;
+  border-radius: 7px;
+  padding: 5px 7px;
+  color: #8495ad;
+  font-size: 9px;
+}
+
+.meta-chip b {
+  color: #aee9d7;
+  font-weight: 600;
+}
+
+/* =====================================
+   8. TYPING ANIMATION
+   ===================================== */
+
+.typing {
+  display: flex;
+  gap: 5px;
+  padding: 16px;
+}
+
+.typing i {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #85d9c2;
+  animation: pulse 1s infinite;
+}
+
+.typing i:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.typing i:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+@keyframes pulse {
+  50% {
+    opacity: 0.25;
+    transform: translateY(-3px);
+  }
+}
+
+/* =====================================
+   9. MESSAGE COMPOSER
+   ===================================== */
+
+.composer-wrap {
+  padding: 15px 5.5% 22px;
+  border-top: 1px solid #202a40;
+}
+
+.composer {
+  max-width: 850px;
+  margin: auto;
+  border: 1px solid #35445e;
+  background: #121d31;
+  border-radius: 13px;
+  display: flex;
+  align-items: flex-end;
+  padding: 8px 9px 8px 15px;
+  gap: 10px;
+}
+
+.composer:focus-within {
+  border-color: #71cdb7;
+  box-shadow: 0 0 0 3px #71cdb714;
+}
+
+.composer textarea {
+  flex: 1;
+  resize: none;
+  max-height: 140px;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: #edf2fa;
+  font: 13px 'DM Sans', sans-serif;
+  padding: 8px 0;
+}
+
+.composer textarea::placeholder {
+  color: #71819b;
+}
+
+.composer button {
+  width: 35px;
+  height: 35px;
+  border: 0;
+  border-radius: 9px;
+  background: #83dfc5;
+  color: #10221f;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+
+.composer button:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.composer-foot {
+  max-width: 850px;
+  margin: 8px auto 0;
+  display: flex;
+  justify-content: space-between;
+  color: #687791;
+  font-size: 9px;
+}
+
+/* =====================================
+   10. ERROR BANNER
+   ===================================== */
+
+.error-banner {
+  max-width: 850px;
+  margin: 0 auto 10px;
+  padding: 10px 12px;
+  border: 1px solid #7c424a;
+  background: #321d2a;
+  color: #ffc3c8;
+  border-radius: 8px;
+  font-size: 12px;
+}
+
+/* =====================================
+   11. SYSTEM PROMPT PANEL
+   ===================================== */
+
+.prompt-panel {
+  padding: 15px 5.5%;
+  border-bottom: 1px solid #202a40;
+  background: #101a2c;
+}
+
+.prompt-panel label {
+  display: block;
+  font-size: 11px;
+  color: #9aabc3;
+  max-width: 850px;
+  margin: 0 auto 7px;
+}
+
+.prompt-panel textarea {
+  width: 100%;
+  max-width: 850px;
+  display: block;
+  margin: auto;
+  background: #0b1425;
+  border: 1px solid #34435b;
+  border-radius: 8px;
+  padding: 10px;
+  color: #e7edf6;
+  font: 12px 'DM Sans', sans-serif;
+  resize: vertical;
+}
+
+/* =====================================
+   12. MARKDOWN RESPONSE STYLING
+   ===================================== */
+
+.markdown-body {
+  white-space: normal;
+  overflow-wrap: anywhere;
+  line-height: 1.75;
+}
+
+.markdown-body > *:first-child {
+  margin-top: 0;
+}
+
+.markdown-body > *:last-child {
+  margin-bottom: 0;
+}
+
+/* Markdown headings */
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4 {
+  font-family: Manrope, sans-serif;
+  color: #f3f6fb;
+  line-height: 1.4;
+  margin: 20px 0 10px;
+}
+
+.markdown-body h1 {
+  font-size: 21px;
+}
+
+.markdown-body h2 {
+  font-size: 19px;
+}
+
+.markdown-body h3 {
+  font-size: 16px;
+}
+
+.markdown-body h4 {
+  font-size: 14px;
+}
+
+/* Paragraphs */
+
+.markdown-body p {
+  margin: 10px 0;
+}
+
+/* Bold and italic */
+
+.markdown-body strong {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.markdown-body em {
+  color: #b9dccc;
+}
+
+/* Lists */
+
+.markdown-body ul,
+.markdown-body ol {
+  padding-left: 24px;
+  margin: 10px 0;
+}
+
+.markdown-body li {
+  margin: 5px 0;
+}
+
+.markdown-body li::marker {
+  color: #83dfc5;
+}
+
+/* Links */
+
+.markdown-body a {
+  color: #83dfc5;
+  text-decoration: underline;
+}
+
+.markdown-body a:hover {
+  color: #b7f3dc;
+}
+
+/* Blockquotes */
+
+.markdown-body blockquote {
+  margin: 14px 0;
+  padding: 10px 14px;
+  border-left: 3px solid #71cdb7;
+  background: #0c1728;
+  border-radius: 0 8px 8px 0;
+  color: #b9c8dc;
+}
+
+/* Inline code */
+
+.markdown-body code {
+  font-family: Consolas, monospace;
+  background: #0b1628;
+  border: 1px solid #2b3b52;
+  border-radius: 5px;
+  padding: 2px 5px;
+  color: #b8f0dd;
+  font-size: 0.92em;
+}
+
+/* Code blocks */
+
+.markdown-body pre {
+  overflow-x: auto;
+  padding: 14px;
+  background: #091321;
+  border: 1px solid #2b3b52;
+  border-radius: 9px;
+  margin: 14px 0;
+  max-width: 100%;
+}
+
+.markdown-body pre code {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #dce5f3;
+  white-space: pre;
+}
+
+/* Horizontal divider */
+
+.markdown-body hr {
+  border: 0;
+  border-top: 1px solid #2b3b52;
+  margin: 18px 0;
+}
+
+/* Tables */
+
+.markdown-body table {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+  margin: 14px 0;
+}
+
+.markdown-body th,
+.markdown-body td {
+  border: 1px solid #34445e;
+  padding: 8px 10px;
+  text-align: left;
+}
+
+.markdown-body th {
+  background: #1b2b43;
+  color: #eaf2fc;
+}
+
+.markdown-body tr:nth-child(even) {
+  background: #101b2d;
+}
+
+/* Images */
+
+.markdown-body img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+/* Task lists */
+
+.markdown-body input[type="checkbox"] {
+  accent-color: #83dfc5;
+  margin-right: 7px;
+}
+
+/* =====================================
+   13. ERROR BOUNDARY FALLBACK
+   ===================================== */
+
+.fatal-error {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  padding: 24px;
+  background: #0b1020;
+  color: #e5e7eb;
+  text-align: center;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.fatal-error h1 {
+  color: #f3f6fb;
+  font-family: Manrope, sans-serif;
+}
+
+.fatal-error p {
+  color: #aab6cb;
+}
+
+.fatal-error button {
+  padding: 11px 18px;
+  border: 0;
+  border-radius: 9px;
+  background: #83dfc5;
+  color: #10221f;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.fatal-error button:hover {
+  background: #b7f3dc;
+}
+
+/* =====================================
+   14. RESPONSIVE DESIGN
+   ===================================== */
+
+@media (max-width: 700px) {
+
+  .app-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    display: none;
+  }
+
+  .topbar {
+    min-height: 75px;
+    padding: 0 18px;
+  }
+
+  .chat-area {
+    padding: 20px 15px;
+  }
+
+  .composer-wrap {
+    padding: 12px 14px 18px;
+  }
+
+  .composer-foot span:last-child {
+    display: none;
+  }
+
+  .welcome {
+    min-height: 390px;
+  }
+
+  .metadata {
+    gap: 5px;
+  }
+
+  .meta-chip {
+    font-size: 8px;
+  }
+
+  .message-content {
+    max-width: calc(100% - 43px);
+  }
+
+  .bubble {
+    padding: 12px;
+  }
+
+  .markdown-body h1 {
+    font-size: 19px;
+  }
+
+  .markdown-body h2 {
+    font-size: 17px;
+  }
+
+  .markdown-body h3 {
+    font-size: 15px;
+  }
+}
+
+/* =====================================
+   15. ACCESSIBILITY AND INTERACTION
+   ===================================== */
+
+button:focus-visible,
+textarea:focus-visible,
+a:focus-visible {
+  outline: 2px solid #83dfc5;
+  outline-offset: 3px;
+}
+
+button {
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    opacity 0.2s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
