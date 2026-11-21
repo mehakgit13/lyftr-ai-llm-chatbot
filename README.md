@@ -451,13 +451,19 @@ The frontend requires:
 - The public backend URL configured through `VITE_API_URL`.
 - A static hosting environment capable of serving the generated `dist` directory.
 
-### Deployment URLs
+
+## Deployment URLs
 
 | Resource | URL |
 |---|---|
-| Public Frontend | Pending deployment |
-| Public Backend | Pending deployment |
-| Backend Health Check | Pending deployment |
+| Public Frontend | https://lyftr-aichatbot-hsvlt0mtm-mehakgit13.vercel.app/ |
+| Public Backend | https://lyftr-ai-llm-chatbot-5xyz.onrender.com |
+| Backend Health Check | https://lyftr-ai-llm-chatbot-5xyz.onrender.com/health |
+| API Documentation | https://lyftr-ai-llm-chatbot-5xyz.onrender.com/docs |
+
+## GitHub Repository
+
+https://github.com/mehakgit13/lyftr-ai-llm-chatbot
 
 ## Setup and Development Environment
 
